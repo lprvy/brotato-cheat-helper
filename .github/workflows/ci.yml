@@ -1,0 +1,21 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  gdscript:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      # Brotato runs on Godot 3, so use the GDScript 1 toolkit
+      - run: pip install "gdtoolkit==3.*"
+      - name: Lint
+        run: gdlint src
+      - name: Check formatting
+        run: gdformat --check src

@@ -21,7 +21,7 @@ const X_BUTTON_SIZE := 30
 const GOLD_BUTTON_AMOUNT := 500
 const STAT_BUTTON_AMOUNT := 5
 const MULT_STEPS := [1.0, 2.0, 3.0, 5.0, 10.0, 25.0, 50.0, 100.0]
-const DEFAULT_MULT_INDEX := 3 # 5x
+const DEFAULT_MULT_INDEX := 3  # 5x
 # ------------------------------------------
 
 var _mult_index: int = DEFAULT_MULT_INDEX
@@ -71,9 +71,14 @@ func _process(delta: float) -> void:
 
 # ---------------- Shop: item delete (X) buttons ----------------
 
+
 func _get_shop_scene():
 	var scene = get_tree().current_scene
-	if scene == null or not (scene.filename in SHOP_SCENES) or not scene.has_method("_get_gear_container"):
+	if (
+		scene == null
+		or not (scene.filename in SHOP_SCENES)
+		or not scene.has_method("_get_gear_container")
+	):
 		return null
 	return scene
 
@@ -151,10 +156,13 @@ func _add_x_button(element: Control, player_index: int) -> void:
 # so they can't be removed and the effect stays even after the item is gone.
 # Here we delete any identical effects beyond what the owned items can provide.
 
+
 func _eff_sig(e) -> String:
 	var script = e.get_script()
 	var s: String = script.resource_path if script else e.get_class()
-	for prop in ["key_hash", "custom_key_hash", "value", "spawn_cooldown", "tracking_key", "is_pet"]:
+	for prop in [
+		"key_hash", "custom_key_hash", "value", "spawn_cooldown", "tracking_key", "is_pet"
+	]:
 		if prop in e:
 			s += "|" + str(e.get(prop))
 	if "scene" in e and e.get("scene"):
@@ -279,7 +287,10 @@ func _input(event) -> void:
 
 
 func _level_up(player_index: int) -> void:
-	var need: float = RunData.get_next_level_xp_needed(player_index) - RunData.get_player_xp(player_index)
+	var need: float = (
+		RunData.get_next_level_xp_needed(player_index)
+		- RunData.get_player_xp(player_index)
+	)
 	# add_xp applies the XP Gain stat; compensate for it
 	var factor: float = 1.0 + Utils.get_stat(Keys.xp_gain_hash, player_index) / 100.0
 	factor = max(factor, 0.05)

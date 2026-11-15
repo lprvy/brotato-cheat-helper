@@ -1,5 +1,7 @@
 # Brotato Cheat Helper
 
+[![CI](https://github.com/lprvy/brotato-cheat-helper/actions/workflows/ci.yml/badge.svg)](https://github.com/lprvy/brotato-cheat-helper/actions/workflows/ci.yml)
+
 A small local cheat mod for [Brotato](https://store.steampowered.com/app/1942280/Brotato/) on Windows. It adds hotkeys for materials, stats and levels, a material multiplier, and a button to delete items in the shop.
 
 It works through Godot's `override.cfg` autoload, so you don't need a mod loader. It changes only your own local game.
@@ -73,6 +75,18 @@ src/Local-CheatHelper/
 ```
 
 `override.cfg` registers `cheat_autoload.gd` as an autoload when the game starts. The autoload then replaces `res://main.gd` with `extensions/main.gd` using `take_over_path`, which is the same technique Godot Mod Loader uses.
+
+## Development
+
+The scripts follow the [gdtoolkit](https://github.com/Scony/godot-gdscript-toolkit) style for Godot 3 (Brotato's engine). CI runs both checks on every push:
+
+```sh
+pip install "gdtoolkit==3.*"
+gdlint src            # lint (config in gdlintrc)
+gdformat --check src  # formatting
+```
+
+`private-method-call` is turned off in `gdlintrc` because the mod has to call some of the game's own private methods (`_get_gear_container`, `_update_stats`, `_get_item_popup`).
 
 ## Disclaimer
 
