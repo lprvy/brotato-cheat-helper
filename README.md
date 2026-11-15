@@ -77,3 +77,7 @@ src/Local-CheatHelper/
 ## Disclaimer
 
 This is a fan-made mod for single-player and local co-op fun. It is not affiliated with or endorsed by Blobfish or Brotato's publishers. Use it at your own risk, and turn it off before you report bugs to the developers.
+
+## License
+
+MIT
