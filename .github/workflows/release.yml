@@ -1,0 +1,26 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # .gitattributes keeps the .bat files CRLF, so they run in cmd.exe
+      - name: Build the zip
+        run: |
+          name="brotato-cheat-helper-${GITHUB_REF_NAME}"
+          mkdir "$name"
+          cp -r install.bat uninstall.bat src README.md LICENSE "$name/"
+          zip -r "$name.zip" "$name"
+          unzip -l "$name.zip"
+      - name: Publish the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" "brotato-cheat-helper-${GITHUB_REF_NAME}.zip" --generate-notes

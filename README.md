@@ -1,6 +1,6 @@
 # Brotato Cheat Helper
 
-[![CI](https://github.com/lprvy/brotato-cheat-helper/actions/workflows/ci.yml/badge.svg)](https://github.com/lprvy/brotato-cheat-helper/actions/workflows/ci.yml)
+[![CI](https://github.com/lprvy/brotato-cheat-helper/actions/workflows/ci.yml/badge.svg)](https://github.com/lprvy/brotato-cheat-helper/actions/workflows/ci.yml) [![Release](https://img.shields.io/github/v/release/lprvy/brotato-cheat-helper)](https://github.com/lprvy/brotato-cheat-helper/releases/latest) [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A small local cheat mod for [Brotato](https://store.steampowered.com/app/1942280/Brotato/) on Windows. It adds hotkeys for materials, stats and levels, a material multiplier, and a button to delete items in the shop.
 
@@ -27,7 +27,7 @@ The material multiplier is applied after the game's own bonuses (Metal Detector,
 - Brotato (Steam version)
 
 ### Install
-1. Download this repository: **Code → Download ZIP**, then extract it. Or clone it:
+1. Download `brotato-cheat-helper-<version>.zip` from the [latest release](https://github.com/lprvy/brotato-cheat-helper/releases/latest) and extract it. Or clone the repository:
    ```bat
    git clone https://github.com/lprvy/brotato-cheat-helper.git
    ```
